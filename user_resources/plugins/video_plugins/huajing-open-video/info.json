@@ -1,0 +1,8 @@
+{
+  "name": "通用视频插件 · 画境",
+  "version": "1.0.0",
+  "author": "画境（微信：wllydydyqr）",
+  "api_version": 2,
+  "type": "video",
+  "description": "改善字字动画内插件提交失败等接入问题；自定义网址、密钥和模型；支持 New API、Sub2API、OpenAI 兼容接口与画境"
+}

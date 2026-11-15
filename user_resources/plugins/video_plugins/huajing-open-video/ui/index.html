@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>字字动画通用插件</title><link rel="stylesheet" href="PLUGIN_SDK_CSS">
+<style>
+:root{color-scheme:light dark;--bg:#f4f6f8;--card:#fff;--text:#182832;--muted:#657681;--line:#dce3e7;--accent:#14776d;--tint:#eaf5f1}*{box-sizing:border-box}body{margin:0;padding:18px;color:var(--text);background:var(--bg);font:14px/1.6 system-ui,'Microsoft YaHei',sans-serif}header{display:flex;align-items:center;justify-content:space-between;gap:12px}h1{margin:0;font-size:21px;letter-spacing:-.5px}.version{font-size:11px;white-space:nowrap;border:1px solid var(--line);padding:3px 8px;border-radius:20px;color:var(--muted)}p{margin:7px 0;color:var(--muted)}section,details{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:13px 0;padding:16px}h2{font-size:15px;margin:0 0 13px}label{display:block;font-size:12px;font-weight:600;margin:12px 0 5px}input,select,textarea,button{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);background:var(--card)}input,select,textarea{width:100%;min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}input[type=checkbox]{width:auto}button{cursor:pointer;background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}button.secondary{background:var(--card);border-color:var(--line);color:var(--text)}button:disabled{opacity:.5;cursor:wait}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.key-row{display:flex;gap:8px}.key-row button{flex-shrink:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hint,small{font-size:12px;color:var(--muted)}#status{white-space:pre-line;overflow-wrap:anywhere;margin-top:12px}#status.error{color:#b23747}#status.success{color:var(--accent)}summary{cursor:pointer;font-size:13px;font-weight:600}a{color:var(--accent)}[hidden]{display:none!important}.promotion{display:block;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:15px 16px;text-decoration:none;color:var(--text);margin:18px 0 7px}.promotion small{display:block;letter-spacing:.6px;font-size:10px;margin-bottom:5px}.promotion strong{display:block;font-size:15px}.promotion span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.promotion b{display:block;color:var(--accent);font-size:12px;margin-top:9px}.footnote{font-size:11px;line-height:1.7;margin-top:12px}.connection-note{padding:8px 0;color:var(--muted);font-size:12px}.kind-video,.kind-image{display:none}body[data-kind=video] .kind-video,body[data-kind=image] .kind-image{display:block}@media(prefers-color-scheme:dark){:root{--bg:#141c21;--card:#1c262c;--text:#e1ecef;--muted:#9bafb8;--line:#34434b;--accent:#79ccbc;--tint:#1d332e}button{color:#142925}button.secondary{color:var(--text)}}@media(max-width:400px){body{padding:12px}.grid{grid-template-columns:1fr}header{align-items:flex-start}h1{font-size:19px}}
+/* Keep the host SDK's typed inputs and headings consistent with this page's palette. */
+h1,h2,h3,h4{color:var(--text)}
+body input[type=text],body input[type=password],body input[type=number],body input[type=url],body textarea{padding:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;color:var(--text);font:inherit;font-size:14px}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+select option{background:var(--card);color:var(--text)}
+button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+button.secondary:hover{background:var(--tint);border-color:var(--line);color:var(--text)}
+@media(prefers-color-scheme:dark){button:hover{color:#142925}button.secondary:hover{color:var(--text)}}
+.author-contact{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--tint);font-size:12px}.author-contact strong{color:var(--accent);user-select:text}
+</style></head><body data-kind="video">
+<header><h1>通用视频插件</h1><span class="version">开源版 · 1.0.0</span></header>
+<p>接上你的接口，在字字动画里继续创作。</p>
+<p class="author-contact">开源作者微信：<strong id="authorWechat">wllydydyqr</strong></p>
+<section><h2>连接你的服务</h2>
+<label for="provider">接口类型</label><select id="provider"><option value="newapi">New API</option><option value="sub2api">Sub2API</option><option value="openai">其他 OpenAI 兼容接口</option><option value="huajing">画境</option></select>
+<label for="base_url">API 基础地址</label><input id="base_url" type="url" placeholder="https://你的站点/v1" autocomplete="off" spellcheck="false"><p class="hint">填域名时自动补 /v1；支持 /openai/v1 等站点前缀。</p>
+<label for="api_key">API Key</label><div class="key-row"><input id="api_key" type="password" placeholder="填写这个站点的密钥" autocomplete="off" spellcheck="false"><button id="showKey" class="secondary" type="button">显示</button></div>
+<div class="connection-note">连接设置仅保存在本机；模型查询和生成使用你填写的接口。</div>
+<div class="row"><button id="connect" type="button">获取模型 / 测试连接</button><button id="save" class="secondary" type="button">保存设置</button></div>
+<div id="status" role="status" aria-live="polite">正在连接字字动画…</div>
+</section>
+<section><h2>选择模型</h2>
+<label for="modelPicker">当前密钥返回的模型</label><select id="modelPicker"><option value="">请先获取模型</option></select>
+<label for="model">模型 ID（也可手动填写）</label><input id="model" autocomplete="off" spellcheck="false" placeholder="例如 gpt-image-2.5 或站点提供的模型别名"><p id="modelHint" class="hint">模型列表按服务商返回的 ID 使用。别名没有标明类型时，也可以手动选择。</p>
+<div class="grid"><div><label for="size">输出尺寸</label><input id="size" list="sizes" value="auto" placeholder="auto 或 1536x1024"><datalist id="sizes"><option value="auto"><option value="1024x1024"><option value="1536x1024"><option value="1024x1536"><option value="1280x720"><option value="720x1280"></datalist></div><div><label id="resolutionLabel" for="resolution">分辨率（画境 / Sub2API）</label><input id="resolution" placeholder="留空使用接口默认" list="resolutions"><datalist id="resolutions"><option value="1k"><option value="2k"><option value="768p"><option value="1080p"><option value="720p"></datalist></div></div>
+<label for="reference_mode">参考素材</label><select id="reference_mode"><option value="auto">自动使用分镜参考项</option><option value="off">仅使用文字</option><option class="kind-video" value="frames">使用首帧 / 首尾帧（画境）</option></select>
+<p class="hint kind-image">参考图通过图片编辑接口提交；多张参考图是否开放，以模型和服务商配置为准。</p>
+<div class="kind-video"><div class="grid"><div><label for="duration_mode">时长来源</label><select id="duration_mode"><option value="fixed">指定秒数</option><option value="scene">跟随分镜时长</option><option value="audio">跟随配音时长</option></select></div><div><label for="duration_seconds">时长（秒）</label><input id="duration_seconds" type="number" min="1" max="300" value="5"></div></div>
+<label for="ratio">视频比例（画境 / Sub2API）</label><select id="ratio"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select>
+<label class="row"><input id="generate_audio" type="checkbox">生成声音（画境参考模式）</label>
+<p class="hint">通用视频支持文字或一张参考图。画境模式保留首尾帧、音视频参考。各模型支持的时长、尺寸以服务商为准。</p></div>
+<p class="hint" id="capabilityHint"></p>
+</section>
+<details><summary>接口细节与等待设置</summary>
+<div class="kind-image"><label for="image_transport">图片请求方式</label><select id="image_transport"><option value="sync">同步图片（通用，New API / Sub2API）</option><option value="async">Sub2API 异步图片（需站点开启）</option></select>
+<div class="grid"><div><label for="quality">quality（可选）</label><input id="quality" placeholder="例如 high / medium"></div><div><label for="response_format">图片返回格式</label><select id="response_format"><option value="">接口默认</option><option value="b64_json">b64_json</option><option value="url">url</option></select></div></div></div>
+<div class="kind-video"><label for="video_route">视频任务接口</label><select id="video_route"><option value="openai">/v1/videos（推荐）</option><option value="legacy">New API 旧版 /v1/video/generations</option></select></div>
+<label for="extra_json">额外请求参数 JSON（可选）</label><textarea id="extra_json" rows="3" spellcheck="false">{}</textarea><p class="hint">按服务商文档填写；model、prompt、n、stream 由插件管理。</p>
+<div class="grid"><div><label for="concurrency">并发任务数</label><input id="concurrency" type="number" min="1" max="8" value="2"></div><div><label for="poll_interval">查询间隔（秒）</label><input id="poll_interval" type="number" min="2" max="30" value="4"></div></div><label for="task_timeout">最长等待（秒）</label><input id="task_timeout" type="number" min="60" max="7200" value="1800">
+<p class="hint">提交中断时请先检查服务商后台的原任务；当前调用内会继续查询已收到编号的任务。</p>
+</details>
+<a id="promotion" class="promotion" hidden target="_blank" rel="noopener noreferrer sponsored"><small>推广 · 画境推荐</small><strong id="promotionTitle"></strong><span id="promotionBody"></span><b id="promotionCta"></b></a>
+<p class="footnote">由画境维护 · MIT 开源。推荐信息通过画境公开接口更新。广告请求与模型请求使用独立连接，广告配置请求只携带插件版本。</p>
+<script src="PLUGIN_SDK_JS"></script><script>
+(function(){
+'use strict';
+const kind='video',fields=['provider','base_url','api_key','model','size','quality','response_format','image_transport','video_route','ratio','resolution','reference_mode','duration_seconds','duration_mode','generate_audio','concurrency','poll_interval','task_timeout','extra_json'];
+const $=id=>document.getElementById(id);let sdk=window.PluginSDK,ready=false,connectionOrigin='',models=[];
+const status=(text,error=false)=>{$('status').textContent=text;$('status').className=error?'error':'success';};
+const addressOrigin=value=>{try{return new URL(value).origin}catch{return ''}};
+function collect(){const p={};fields.forEach(k=>p[k]=$(k).type==='checkbox'?$(k).checked:$(k).value);return p;}
+function apply(p){fields.forEach(k=>{if(p[k]==null)return;if($(k).type==='checkbox')$(k).checked=[true,'true',1,'1'].includes(p[k]);else $(k).value=String(p[k]);});connectionOrigin=addressOrigin($('base_url').value);updateHints();}
+function updateHints(){const huajing=$('provider').value==='huajing';$('capabilityHint').textContent=huajing?'画境使用专用异步接口，参数与参考素材上限由画境实时配置提供。':(kind==='image'?'图片支持文字生成和参考图编辑；请选择服务商已开放的图片模型。':'视频使用任务接口；请选择服务商已开放的视频模型。');$('image_transport').disabled=$('provider').value!=='sub2api';$('resolutionLabel').textContent=kind==='image'?'分辨率（画境）':'分辨率（画境 / Sub2API）';if(kind==='image')$('ratio').parentElement.hidden=true;}
+async function action(name,data={}){if(!sdk||!ready)throw Error('请在字字动画插件设置页打开');const r=await sdk.sendAction(name,data);if(!r?.ok)throw Error(r?.error||'操作暂未完成');return r;}
+async function save(){const r=await action('save_settings',{params:collect()});apply(r.params);return r;}
+async function busy(button,fn){button.disabled=true;try{await fn()}catch(e){status(e.message,true)}finally{button.disabled=false;}}
+function clearConnection(){const current=addressOrigin($('base_url').value);if(current!==connectionOrigin){$('api_key').value='';$('model').value='';$('modelPicker').replaceChildren(new Option('请重新获取模型',''));models=[];connectionOrigin=current;status('接口已改变，请填写这个站点的密钥并获取模型');}}
+function catalog(c){models=c.models||[];const sorted=[...models].sort((a,b)=>(b.type===kind)-(a.type===kind)||a.id.localeCompare(b.id));$('modelPicker').replaceChildren(new Option('从模型列表选择…',''),...sorted.map(m=>new Option(m.label||m.id,m.id)));const current=$('model').value;if(!current&&c.default_model)$('model').value=c.default_model;if(sorted.some(m=>m.id===$('model').value))$('modelPicker').value=$('model').value;$('modelHint').textContent='读取到 '+models.length+' 个模型。'+(kind==='video'?'视频':'图片')+'模型优先排列；模型别名可直接手填。';}
+async function promotion(){try{const r=await action('load_promotion'),p=r.promotion;if(!p?.enabled){$('promotion').hidden=true;return;}const u=new URL(p.url);if(u.protocol!=='https:')return;$('promotion').href=u.href;$('promotionTitle').textContent=p.title;$('promotionBody').textContent=p.body;$('promotionCta').textContent=(p.cta||'访问官网')+' ↗';$('promotion').hidden=false;}catch{/* Generation and editing remain usable when the banner is offline. */}}
+$('showKey').onclick=()=>{const input=$('api_key');input.type=input.type==='password'?'text':'password';$('showKey').textContent=input.type==='password'?'显示':'隐藏';};
+$('base_url').addEventListener('change',clearConnection);
+$('provider').addEventListener('change',()=>{if($('provider').value==='huajing'){$('base_url').value='https://api.huajingart.cn/v1';$('resolution').value=kind==='video'?'768p':'2k';}clearConnection();updateHints();});
+$('modelPicker').onchange=()=>{if($('modelPicker').value)$('model').value=$('modelPicker').value;};
+fields.forEach(k=>$(k).addEventListener('input',()=>{if(ready)status('有未保存修改；完成设置后点击保存');}));
+$('save').onclick=()=>busy($('save'),async()=>{await save();status('设置已保存到本机');});
+$('connect').onclick=()=>busy($('connect'),async()=>{await save();status('正在读取当前密钥的模型列表…');const r=await action('test_connection',{params:collect()});catalog(r.catalog);await save();status('连接成功。'+r.message+(r.credits!=null?'\n画境余额：'+r.credits+' 分':''));});
+if(sdk?.onReady){sdk.onReady(async initial=>{ready=true;apply(initial||{});void promotion();try{const r=await action('load_settings');apply(r.params);status('设置已就绪，填写地址和密钥后获取模型');}catch(e){status(e.message,true);}});sdk.onRequestParams?.(()=>collect());setInterval(()=>{if(ready&&!document.hidden)void promotion();},60000);}else status('请把 user_resources 复制到字字动画目录，并在软件的插件设置页打开',true);
+})();
+</script></body></html>

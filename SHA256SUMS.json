@@ -1,0 +1,21 @@
+{
+  ".gitignore": "7d392f108e5195224ef0782e262d543bad0d03c110d498bacd58b28a9e208123",
+  "LICENSE": "aabd9277cbcdbbdeb929bd0d48ea19ba91769a59a8f4951511ebd64eb4f2420e",
+  "README.md": "908da2ce8f408b2511b7e7243c24c2b2db7b053a44f4994a364c76f256c8daff",
+  "requirements.txt": "1d77e78765f333f26c82825aedf329a7a0baa0b5250db65f1c59785e501d8f84",
+  "user_resources/plugins/image_plugins/huajing-open-image/gateway_runtime.py": "556b0e42683a06bb46674d395209b2c2e6f5c21fa2c56919dc7131ceabacf01b",
+  "user_resources/plugins/image_plugins/huajing-open-image/huajing_compat.py": "fd62dfdf89e143041e7d6fb6a6b8566cc18a458f11d070ada9da023c482d24e8",
+  "user_resources/plugins/image_plugins/huajing-open-image/info.json": "17db9e979a160f343532432b085f9a643d43ad68cea1919106a1f708c3247b77",
+  "user_resources/plugins/image_plugins/huajing-open-image/main.py": "d82d5c4149f8184f2afb9dd8043f3b286841238952f71dd9101fd8bc8186a814",
+  "user_resources/plugins/image_plugins/huajing-open-image/ui/index.html": "80c8b0938da86204770c48afc39bd3bf69dda7f3cdd3dc62b04a0fec2d9cfbe4",
+  "user_resources/plugins/video_plugins/huajing-open-video/gateway_runtime.py": "556b0e42683a06bb46674d395209b2c2e6f5c21fa2c56919dc7131ceabacf01b",
+  "user_resources/plugins/video_plugins/huajing-open-video/huajing_compat.py": "fd62dfdf89e143041e7d6fb6a6b8566cc18a458f11d070ada9da023c482d24e8",
+  "user_resources/plugins/video_plugins/huajing-open-video/info.json": "1440fbd4ece58c851fb72d0e969dda9b6fd9d79877aeebe21d8408e2f25460ce",
+  "user_resources/plugins/video_plugins/huajing-open-video/main.py": "541ae52c5da1fea972dc7c939f8ecc285c3ee57774c27aa507cd89afad7f1f08",
+  "user_resources/plugins/video_plugins/huajing-open-video/ui/index.html": "52c9b820992bf201f9c2cdfbcfca992e03a2ca64b2257c72c18d5113d20c473b",
+  "先看这里.txt": "8b3390f9f8c2e850f75d725fe2fb409284924fa1e081940c55a2fcf9574807d4",
+  "参考资料/开源发布说明.md": "00ab054994fea6af257f13238b8c939b237b02c795845d389b87dc7d1e71a638",
+  "参考资料/界面预览/图片插件.png": "0ffb3433a0202dc46e223d72ae50843cf2d84fafcdd6c817c27063a46b77a7aa",
+  "参考资料/界面预览/视频插件.png": "029ffb45334f8b3ae4d6cddd90539178418f80f37122671879f3e16c2dad4070",
+  "参考资料/详细说明.md": "40c97504cc097fce9c6762957c0a30db90114890b873993bc802467beafea5d7"
+}
