@@ -1,7 +1,7 @@
 {
-  ".gitignore": "d62d82046dbb752974af67d6796e5d986f21a1d94b0e9f3ecd384b896e3b1d57",
+  ".gitignore": "63bbe41f2411d07cdb939f68267dcc9afd995f29b589d045df24feb8eb003ada",
   "LICENSE": "aabd9277cbcdbbdeb929bd0d48ea19ba91769a59a8f4951511ebd64eb4f2420e",
-  "README.md": "908da2ce8f408b2511b7e7243c24c2b2db7b053a44f4994a364c76f256c8daff",
+  "README.md": "39e4d7ee7e329a7184de8318de2ef246795cddd2f0955dd3d824b082b4cfdfd4",
   "requirements.txt": "1d77e78765f333f26c82825aedf329a7a0baa0b5250db65f1c59785e501d8f84",
   "user_resources/plugins/image_plugins/huajing-open-image/gateway_runtime.py": "556b0e42683a06bb46674d395209b2c2e6f5c21fa2c56919dc7131ceabacf01b",
   "user_resources/plugins/image_plugins/huajing-open-image/huajing_compat.py": "fd62dfdf89e143041e7d6fb6a6b8566cc18a458f11d070ada9da023c482d24e8",
